@@ -10,5 +10,5 @@ jobs:
     steps:
       - run: echo "Hacemos pull del código"
       - run: echo "Hacemos push del código"
-      - run: echo "Compilamos"
+      - run: mvn compile
       - run: echo "Deployamos"
