@@ -5,10 +5,17 @@ on:
     branches: ["main"]
 
 jobs:
-  deploy-examen:
+  deploy-test:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hacemos pull del código"
       - run: echo "Hacemos push del código"
-      - run: mvn compile
-      - run: echo "Deployamos"
+      - run: echo "ejecutando actions"
+      - run: echo "Deployamos en DEV"
+  deploy-production:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hacemos pull to master"
+      - run: echo "Hacemos push to master"
+      - run: echo "ejecutando actions to master"
+      - run: echo "Deployamos to master"
