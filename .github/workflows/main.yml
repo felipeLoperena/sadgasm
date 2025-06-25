@@ -13,6 +13,7 @@ jobs:
       - run: echo "ejecutando actions"
       - run: echo "Deployamos en DEV"
   deploy-production:
+    needs: deploy-test
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hacemos pull to master"
