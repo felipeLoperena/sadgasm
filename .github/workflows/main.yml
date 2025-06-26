@@ -21,6 +21,8 @@ jobs:
   deploy-production:
     needs: deploy-test
     runs-on: ubuntu-latest
+    env:
+      NAME: Jonhouseman
     steps:
       - name: Root
         run: ls -al
