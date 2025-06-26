@@ -7,11 +7,17 @@ on:
 jobs:
   deploy-test:
     runs-on: ubuntu-latest
+    env:
+      NAME: Jonhouseman
     steps:
-      - run: echo "Hacemos pull del código"
-      - run: echo "Hacemos push del código"
-      - run: echo "ejecutando actions"
-      - run: echo "Deployamos en DEV"
+      - name: Pull
+        run: echo "Hacemos pull del código $NAME"
+      - name: Push
+        run: echo "Hacemos push del código"
+      - name: Actions
+        run: echo "ejecutando actions"
+      - name: Deploy
+        run: echo "Deployamos en DEV"
   deploy-production:
     needs: deploy-test
     runs-on: ubuntu-latest
