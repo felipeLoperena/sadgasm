@@ -22,7 +22,14 @@ jobs:
     needs: deploy-test
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hacemos pull to master"
+      - name: Root
+        run: ls -al
+      - name: Action
+        uses: actions/checkout@v4
+      - name: RootDirectory
+        run: ls -al
+      - name: RootDirectory  
+        run: echo "Hacemos pull to master $NAME"
       - run: echo "Hacemos push to master"
       - run: echo "ejecutando actions to master"
       - run: echo "Deployamos to master"
