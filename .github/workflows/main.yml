@@ -13,11 +13,11 @@ jobs:
       - name: Pull
         run: echo "Hacemos pull del código $NAME"
       - name: Push
-        run: echo "Hacemos push del código"
+        run: echo "Hacemos push del código $NAME"
       - name: Actions
-        run: echo "ejecutando actions"
+        run: echo "ejecutando actions $NAME"
       - name: Deploy
-        run: echo "Deployamos en DEV"
+        run: echo "Deployamos en DEV $NAME"
   deploy-production:
     needs: deploy-test
     runs-on: ubuntu-latest
