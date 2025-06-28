@@ -10,17 +10,20 @@ jobs:
     env:
       NAME: Jonhouseman
     
+    outputs: 
+      salida: ${{ steps.step_1.outputs.myVariable }}
+    
     strategy:
       matrix:
         message: ["DEV", "QA"]
     steps:
-      - name: Pull
+      - name: Setting variables
         id: step_1
         run: echo "myVariable=JONHOUSEMAN DOMAIN" >> $GITHUB_OUTPUT
-      - name: Push
-        run: echo "Hacemos push del código $NAME"
+      - name: Test
+        run: echo "Hacemos test del código $NAME"
       - name: Actions
-        run: echo "ejecutando actions $NAME"
+        run: echo "Ejecutando actions $NAME"
       - name: Deploy
         run: echo "Deployamos en DEV $NAME"
       - name: DOMAIN UP
@@ -31,6 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NAME: Jonhouseman
+      SALIDA: ${{ needs.deploy-test.outputs.salida }}
     steps:
       - name: Root
         run: ls -al
@@ -42,4 +46,4 @@ jobs:
         run: echo "Hacemos pull to master $NAME"
       - run: echo "Hacemos push to master"
       - run: echo "ejecutando actions to master"
-      - run: echo "Deployamos to master"
+      - run: echo "Deployamos to master en $SALIDA"
