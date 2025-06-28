@@ -11,7 +11,7 @@ jobs:
       NAME: Jonhouseman
     
     outputs: 
-      salida: ${{ steps.step_1.outputs.myVariable }}
+      SALIDA: ${{ steps.step_1.outputs.myVariable }}
     
     strategy:
       matrix:
@@ -28,7 +28,7 @@ jobs:
         run: echo "Deployamos en DEV $NAME"
       - name: DOMAIN UP
         run: echo "${{ matrix.message }}"
-             echo "${{ steps.step_1.outputs.myVariable }}"
+             echo "$SALIDA"
   deploy-production:
     needs: deploy-test
     runs-on: ubuntu-latest
