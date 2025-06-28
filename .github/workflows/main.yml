@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NAME: Jonhouseman
+    
+    strategy:
+      matrix:
+        message: ["DEV", "QA"]
     steps:
       - name: Pull
         run: echo "Hacemos pull del código $NAME"
@@ -18,6 +22,8 @@ jobs:
         run: echo "ejecutando actions $NAME"
       - name: Deploy
         run: echo "Deployamos en DEV $NAME"
+      - name: Steps terminados con éxito
+        run: echo "${{ matrix.message }}"
   deploy-production:
     needs: deploy-test
     runs-on: ubuntu-latest
