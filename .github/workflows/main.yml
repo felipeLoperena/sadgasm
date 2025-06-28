@@ -15,15 +15,17 @@ jobs:
         message: ["DEV", "QA"]
     steps:
       - name: Pull
-        run: echo "Hacemos pull del código $NAME"
+        id: step_1
+        run: echo "myVariable=JONHOUSEMAN DOMAIN" >> $GITHUB_OUTPUT
       - name: Push
         run: echo "Hacemos push del código $NAME"
       - name: Actions
         run: echo "ejecutando actions $NAME"
       - name: Deploy
         run: echo "Deployamos en DEV $NAME"
-      - name: Steps terminados con éxito
+      - name: DOMAIN UP
         run: echo "${{ matrix.message }}"
+             echo "${{ steps.step_1.outputs.myVariable }}"
   deploy-production:
     needs: deploy-test
     runs-on: ubuntu-latest
@@ -36,7 +38,7 @@ jobs:
         uses: actions/checkout@v4
       - name: RootDirectory
         run: ls -al
-      - name: RootDirectory  
+      - name: Pull  
         run: echo "Hacemos pull to master $NAME"
       - run: echo "Hacemos push to master"
       - run: echo "ejecutando actions to master"
