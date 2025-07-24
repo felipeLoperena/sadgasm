@@ -9,3 +9,7 @@ jobs:
         steps:
             - name: Print variable
               run: echo "${{ secrets.TOKEN_SECRET }}"
+
+            - uses: actions/checkout@main        # replace @main with desired version
+            - uses: fleshgrinder/setup-java@main # replace @main with desired version
+            - run: java -version
