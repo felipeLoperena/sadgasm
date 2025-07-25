@@ -1,0 +1,22 @@
+name: Ejecutar tests de Spring Boot
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar el repositorio
+      uses: actions/checkout@v4
+
+    - name: Configurar Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin' # o adopt, zulu, etc.
+        java-version: '17'      # usa la versión de tu proyecto
+
+    - name: Ejecutar tests con Maven
+      run: mvn clean test
