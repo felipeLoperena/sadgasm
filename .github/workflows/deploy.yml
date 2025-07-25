@@ -5,11 +5,15 @@ on: push
 jobs:
     first_job:
         runs-on: ubuntu-latest
+        
+        services:
+          redis:
+            image: redis
+            ports:
+              - 6379:6379
 
         steps:
-            - name: Print variable
-              run: echo "${{ secrets.TOKEN_SECRET }}"
-
-            - uses: actions/checkout@main        # replace @main with desired version
-            - uses: fleshgrinder/setup-java@main # replace @main with desired version
-            - run: java -version
+            - name: Install redis cli
+              run: sudo apt -get update -y && sudo apt-get install redis-tools -y
+            - name: Test redis
+              run: redis-cli -h localhost -p 6379 ping
