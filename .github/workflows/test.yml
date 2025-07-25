@@ -18,10 +18,5 @@ jobs:
         distribution: 'temurin' # o adopt, zulu, etc.
         java-version: '17'      # usa la versión de tu proyecto
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-        - name: Ejecutar tests con Maven
-          run: mvn clean test
+    - name: Ejecutar tests con Maven
+      run: mvn clean test
