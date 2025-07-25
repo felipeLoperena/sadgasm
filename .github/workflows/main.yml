@@ -5,45 +5,21 @@ on:
     branches: ["main"]
 
 jobs:
-  deploy-test:
+  run-test:
     runs-on: ubuntu-latest
-    env:
-      NAME: Jonhouseman
-    
-    outputs: 
-      SALIDA: ${{ steps.step_1.outputs.myVariable }}
-    
-    strategy:
-      matrix:
-        message: ["DEV", "QA"]
+
     steps:
-      - name: Setting variables
-        id: step_1
-        run: echo "myVariable=JONHOUSEMAN DOMAIN" >> $GITHUB_OUTPUT
-      - name: Test
-        run: echo "Hacemos test del código $NAME"
-      - name: Actions
-        run: echo "Ejecutando actions $NAME"
-      - name: Deploy
-        run: echo "Deployamos en DEV $NAME"
-      - name: DOMAIN UP
-        run: echo "${{ matrix.message }}"
-             echo "$SALIDA"
-  deploy-production:
-    needs: deploy-test
-    runs-on: ubuntu-latest
-    env:
-      NAME: Jonhouseman
-      SALIDA: ${{ needs.deploy-test.outputs.salida }}
-    steps:
-      - name: Root
-        run: ls -al
-      - name: Action
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: RootDirectory
-        run: ls -al
-      - name: Pull  
-        run: echo "Hacemos pull to master $NAME"
-      - run: echo "Hacemos push to master"
-      - run: echo "ejecutando actions to master"
-      - run: echo "Deployamos to master en $SALIDA"
+
+      - name: setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Run Test
+        run: npm run test
+        
