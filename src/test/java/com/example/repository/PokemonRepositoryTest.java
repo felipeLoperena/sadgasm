@@ -16,7 +16,7 @@ import com.example.entity.Pokemon;
 
 @ActiveProfiles("test")
 @DataJpaTest
-@Sql(scripts = "/data-pokemon.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = "/data-pokemon.sql")
 public class PokemonRepositoryTest {
 
     @Value("${app.test.config}")
