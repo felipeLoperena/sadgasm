@@ -16,4 +16,4 @@ jobs:
             - name: Install redis cli
               run: sudo apt-get update -y && sudo apt-get install redis-tools -y
             - name: Test redis
-              run: redis-cli -h localhost -p 6379 ping 
+              run: redis-cli -h localhost -p 6379 ping

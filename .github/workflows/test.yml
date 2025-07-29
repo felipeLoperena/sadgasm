@@ -17,6 +17,9 @@ jobs:
       with:
         distribution: 'temurin' # o adopt, zulu, etc.
         java-version: '17'      # usa la versión de tu proyecto
+    
+    - name: Compilar y empaquetar el proyecto
+      run: mvn clean package
 
     - name: Ejecutar tests con Maven
-      run: mvn clean test
+      run: mvn test
